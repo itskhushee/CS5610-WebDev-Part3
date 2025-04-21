@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 // Configure CORS to allow requests from the React client
 const allowedOrigins = [              // local dev
-  "client-beta-wine.vercel.app",                // prod front‑end (e.g. https://my‑app.vercel.app)
+  "https://client-beta-wine.vercel.app",                // prod front‑end (e.g. https://my‑app.vercel.app)
 ];
 
 const corsOptions = {
