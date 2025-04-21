@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 // Configure CORS to allow requests from the React client
 const allowedOrigins = [              // local dev
-  process.env.REACT_APP_API_URL,                // prod front‑end (e.g. https://my‑app.vercel.app)
+  process.env.FRONTEND_API_URL,                // prod front‑end (e.g. https://my‑app.vercel.app)
 ];
 
 app.use(
