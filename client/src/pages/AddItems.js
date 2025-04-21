@@ -49,7 +49,9 @@ const AddTransaction = () => {
   };
 
   const handleLogout = async () => {
-    await fetch(`${process.env.REACT_APP_API_URL}/logout`, { method: "POST", credentials: "include" });
+    await fetch(`${process.env.REACT_APP_API_URL}/logout`, 
+      { method: "POST", 
+      credentials: "include" });
     navigate("/login");
   };
 
