@@ -13,10 +13,16 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Configure CORS to allow requests from the React client
-app.use(cors({
-  origin: ['http://localhost:3000'],
-  credentials: true
-}));
+const allowedOrigins = [              // local dev
+  process.env.REACT_APP_API_URL,                // prod front‑end (e.g. https://my‑app.vercel.app)
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  }),
+);
 
 // Utility endpoint
 app.get('/ping', (req, res) => {
@@ -34,7 +40,7 @@ app.post('/add-items', requireAuth, createItem);
 app.get('/categories', requireAuth,getCategories);
 app.delete('/delete-items/:id', requireAuth,deleteItems);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`API server running on port ${PORT}`);
 });
