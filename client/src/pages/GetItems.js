@@ -27,7 +27,7 @@ const GetItems = () => {
 
   const getItems = async () => {
     try {
-      const response = await fetch("/items", { credentials: "include" });
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/items`, { credentials: "include" });
       const data = await response.json();
       if (!response.ok) {
         setError(data.error || "Error fetching data");
@@ -47,7 +47,7 @@ const GetItems = () => {
 
   const getCategories = async () => {
     try {
-      const response = await fetch("/categories", { credentials: "include" });
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/categories`, { credentials: "include" });
       const data = await response.json();
       if (response.ok) setCategories(data);
       else setError("Error fetching categories");
@@ -94,7 +94,7 @@ const GetItems = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await fetch("/logout", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -107,7 +107,7 @@ const GetItems = () => {
 
   const handleDeleteTransaction = async (id) => {
     try {
-      const response = await fetch(`/delete-items/${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/delete-items/${id}`, {
         method: "DELETE",
         credentials: "include",
       });

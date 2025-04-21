@@ -17,12 +17,18 @@ const allowedOrigins = [              // local dev
   "client-beta-wine.vercel.app",                // prod front‑end (e.g. https://my‑app.vercel.app)
 ];
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  }),
-);
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+ 
+app.use(cors(corsOptions));
 
 // Utility endpoint
 app.get('/ping', (req, res) => {

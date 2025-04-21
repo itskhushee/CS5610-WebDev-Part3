@@ -13,7 +13,7 @@ const AddTransaction = () => {
   useEffect(() => {
         const fetchCategories = async () => {
           try {
-            const res = await fetch("/categories", { credentials: "include" });
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/categories`, { credentials: "include" });
             const data = await res.json();
             if (res.ok) setCategories(data);
             else console.error("Failed to load categories");
@@ -28,7 +28,7 @@ const AddTransaction = () => {
     e.preventDefault();
     setError("");
     try {
-      const response = await fetch("/add-items", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/add-items`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -49,7 +49,7 @@ const AddTransaction = () => {
   };
 
   const handleLogout = async () => {
-    await fetch("/logout", { method: "POST", credentials: "include" });
+    await fetch(`${process.env.REACT_APP_API_URL}/logout`, { method: "POST", credentials: "include" });
     navigate("/login");
   };
 
